@@ -16,15 +16,16 @@ const logoutButton = document.querySelector('#logout');
 const deleteButton = document.querySelector('.delete-button');
 
 // let some todo state (an array)
-let todo = [];
+let todos = [];
 
 todoForm.addEventListener('submit', async (e) => {
     // on submit,
     e.preventDefault();
     const data = new FormData(todoForm);
     // create a todo in supabase using for data
-
+    await createTodo(data.get('todo'));
     // reset the form DOM element
+    todoForm.reset();
     // and display the todos
 });
 
@@ -32,6 +33,7 @@ async function displayTodos() {
     // clear the container (.textContent = '')
     todosEl.textContent = '';
     // fetch the user's todos from supabase
+    todos = await getTodos();
     // loop through the user's todos
     // for each todo, render a new todo DOM element using your render function
     // then add an event listener to each todo
