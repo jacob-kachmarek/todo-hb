@@ -8,8 +8,6 @@ export async function createTodo(todo) {
     // create a single incomplete todo with the correct 'todo' property for this user in supabase
     const response = await client.from('todos').insert({
         todo: todo,
-        complete: false,
-        user_id: client.auth.user().id,
     });
     // once you have a response from supabase, comment this back in:
     return checkError(response);
@@ -17,18 +15,16 @@ export async function createTodo(todo) {
 
 export async function deleteAllTodos() {
     // delete all todos for this user in supabase
-    const response = await client.from('todos').delete().match({ user_id: client.auth.user().id });
+    const response = await client.from('todos').delete().match({
+        user_id: client.auth.user().id,
+    });
     // once you have a response from supabase, comment this back in:
     return checkError(response);
 }
 
 export async function getTodos() {
     // get all todos for this user from supabase
-    let response = await client
-        .from('todos')
-        .select()
-        .order('complete')
-        .match({ user_id: client.auth.user().id });
+    let response = await client.from('todos').select().order('complete');
     // once you have a response from supabase, comment this back in:
     return checkError(response);
 }
