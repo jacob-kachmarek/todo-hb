@@ -21,8 +21,9 @@ let todo = [];
 todoForm.addEventListener('submit', async (e) => {
     // on submit,
     e.preventDefault();
-    // create a todo in supabase using for data
     const data = new FormData(todoForm);
+    // create a todo in supabase using for data
+
     // reset the form DOM element
     // and display the todos
 });
