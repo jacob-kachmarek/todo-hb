@@ -4,11 +4,11 @@ export function renderTodo(todo) {
     const p = document.createElement('p');
 
     // depending on whether the todo is complete, give the div the appropriate css class ('complete' or 'incomplete')
-    if (todo.complete === true) div.classList.add('complete');
+    div.classList.add(todo.complete ? 'complete' : 'incomplete');
     // add the 'todo' css class no matter what
     div.classList.add('todo');
     // put the todo's text into the p tag
-    p.textContent = todo;
+    p.textContent = todo.todo;
 
     // append stuff
     div.append(p);
